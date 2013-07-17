@@ -6,3 +6,8 @@
   <i class="icon-pencil"></i>
   Edit Project
 <% end %>
+
+<%= link_to project_path(@project), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this project?" } do %>
+  <i class="icon-trash icon-white"></i>
+  Delete Project
+<% end %>
