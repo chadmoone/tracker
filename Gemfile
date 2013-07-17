@@ -45,6 +45,14 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'rspec-rails', '~> 2.13.2', group: [:test, :development]
+group :test, :development do
+  gem 'capybara', '~> 2.0.2'
 
-gem 'capybara', '~> 2.0.2'
+  gem 'rspec-rails', '~> 2.13.2'
+
+  gem 'factory_girl_rails', '~> 4.2.0'
+  gem 'factory_girl', '~> 4.2.0'
+
+  gem 'faker', '~> 1.1.2'
+end
+
