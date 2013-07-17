@@ -1,3 +1,8 @@
 <% title(@project.name, "Projects") %>
 
 <h2><%= @project.name %></h2>
+
+<%= link_to edit_project_path(@project), class: "btn" do %>
+  <i class="icon-pencil"></i>
+  Edit Project
+<% end %>

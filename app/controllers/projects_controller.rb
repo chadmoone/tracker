@@ -16,14 +16,30 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      flash[:notice] = "'#{@project.name}' project was successfully created."
+      flash[:notice] = "Project was successfully created."
       redirect_to @project
     else
-      flash[:alert] = "Could not create project."
+      flash[:alert] = "Project could not be created."
       render action: "new"
     end
-
   end
+
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+
+    if @project.update(project_params)
+      flash[:notice] = "Project was successfully updated."  
+      redirect_to @project
+    else
+      flash[:alert] = "Project could not be updated."
+      render action: "edit"
+    end
+  end
+
 
   private
 

@@ -11,7 +11,7 @@ feature 'Creating Projects' do
     fill_in 'Description', with: 'A text-editor for OS X'
     click_button 'Create Project'
 
-    expect(page).to have_content("'TextMate 2' project was successfully created.")
+    expect(page).to have_content("Project was successfully created.")
 
     project = Project.where(name: "TextMate 2").first
 
@@ -24,7 +24,7 @@ feature 'Creating Projects' do
   scenario "can not create a project without a name" do
     click_button 'Create Project'
 
-    expect(page).to have_content("Could not create project.")
+    expect(page).to have_content("Project could not be created.")
     expect(page).to have_content("Name can't be blank")
   end
 end
