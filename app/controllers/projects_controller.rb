@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      flash[:notice] = "Project was successfully created."
+      flash[:notice] = "Project successfully created."
       redirect_to @project
     else
       flash[:alert] = "Project could not be created."
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      flash[:notice] = "Project was successfully updated."  
+      flash[:notice] = "Project successfully updated."  
       redirect_to @project
     else
       flash[:alert] = "Project could not be updated."

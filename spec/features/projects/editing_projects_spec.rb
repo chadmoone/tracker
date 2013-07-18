@@ -13,7 +13,7 @@ feature 'Editing Projects' do
     fill_in "Name", with: "TextMate 2 beta"
     click_button "Update Project"
 
-    expect(page).to have_content("Project was successfully updated.")
+    expect(page).to have_content("Project successfully updated.")
   end
 
   scenario "Updating a project with invalid attributes will not succeed" do
