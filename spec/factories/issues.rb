@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :issue do
-    title "MyString"
-    description "MyText"
+    title Faker::Company.bs
+    description Faker::Lorem.paragraph([1..10].sample)
     project nil
   end
 end

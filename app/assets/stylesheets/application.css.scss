@@ -16,4 +16,17 @@ body {
 	padding-top: 40px;
 }
 
-@import "bootstrap-responsive";
+
+h2 .icon {
+	margin-top: 12px;
+}
+
+.edit a:hover {
+	text-decoration:none !important;
+}
+
+#issues-table {
+	margin-top: 20px;
+}
+
+//@import "bootstrap-responsive";
