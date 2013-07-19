@@ -31,7 +31,7 @@
   <% if @issue.new_record? %>
     <%= link_to 'Cancel', @project, class: 'btn' %>
   <% else %>
-    <%= link_to 'Cancel', @issue, class: 'btn' %>
+    <%= link_to 'Cancel', [@project, @issue], class: 'btn' %>
   <% end %>
   
   <%= f.submit nil, class: 'btn btn-primary' %>

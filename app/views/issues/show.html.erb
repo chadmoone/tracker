@@ -1,4 +1,8 @@
 <div id="issue">
   <h2><%= @issue.title %></h2>
+  <%= link_to [:edit, @project, @issue], class: "btn" do %>
+    <i class="icon-pencil"></i>
+    Edit Issue
+  <% end %>
   <%= simple_format(@issue.description) %>
 </div>
