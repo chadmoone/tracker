@@ -4,5 +4,11 @@
     <i class="icon-pencil"></i>
     Edit Issue
   <% end %>
+
+  <%= link_to [@project, @issue], method: :delete, class: "btn", data: {confirm: "Are you sure you want to delete this issue?"} do %>
+    <i class="icon-trash"></i>
+    Delete Issue
+  <% end %>
+
   <%= simple_format(@issue.description) %>
 </div>
