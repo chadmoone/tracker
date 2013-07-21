@@ -2,17 +2,20 @@ require "spec_helper"
 
 feature "Viewing Issues" do
   before do
+    user = FactoryGirl.create(:user)
     textmate_2 = FactoryGirl.create(:project, name: "TextMate 2")
-    FactoryGirl.create(:issue,
+    issue = FactoryGirl.create(:issue,
                        project: textmate_2,
                        title: "Make it shiny!",
-                       description: "Gradients! Starbursts! Oh my!")
+                       description: "Gradients! Starbursts! Oh my!",
+                       user: user)
 
     internet_explorer = FactoryGirl.create(:project, name: "Internet Explorer")
-    FactoryGirl.create(:issue,
+    issue2 = FactoryGirl.create(:issue,
                        project: internet_explorer,
                        title: "Standards compliance",
-                       description: "Isn't a joke.")
+                       description: "Isn't a joke.",
+                       user: user)
 
     visit '/'
   end

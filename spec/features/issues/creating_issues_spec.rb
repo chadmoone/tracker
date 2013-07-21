@@ -2,11 +2,23 @@ require 'spec_helper'
 
 feature 'Creating Issues' do
   before do
-    FactoryGirl.create(:project, name: "Internet Explorer")
+    project = FactoryGirl.create(:project)
+    @user = FactoryGirl.create(:user)
 
     visit '/'
-    click_link "Internet Explorer"
+    click_link project.name
     click_link "New Issue"
+
+    message = "You need to log in or sign up before continuing."
+    expect(page).to have_content(message)
+
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: @user.password
+    click_button "Log in"
+
+    within("h2") do
+      expect(page).to have_content("New Issue")
+    end
   end
 
   scenario "Creating an issue" do
@@ -15,6 +27,10 @@ feature 'Creating Issues' do
     click_button "Create Issue"
 
     expect(page).to have_content("Issue successfully created.")
+
+    within "#issue #creator" do
+      expect(page).to have_content("Created by #{@user.name}")
+    end
   end
 
   scenario "Creating an issue without valid attributes fails" do

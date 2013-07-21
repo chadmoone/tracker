@@ -1,5 +1,8 @@
 <div id="issue">
   <h2><%= @issue.title %></h2>
+
+  <span id="creator">Created by <%= @issue.user.name %></span>
+
   <%= link_to [:edit, @project, @issue], class: "btn" do %>
     <i class="icon-pencil"></i>
     Edit Issue

@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   before_action :set_project
   before_action :set_issue, only: [:show,
                                    :edit,
@@ -18,6 +20,7 @@ class IssuesController < ApplicationController
 
   def create
     @issue = @project.issues.build(issue_params)
+    @issue.user = current_user
 
     if @issue.save
       flash[:notice] = "Issue successfully created."
