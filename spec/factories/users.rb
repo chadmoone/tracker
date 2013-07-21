@@ -6,5 +6,9 @@ FactoryGirl.define do
     lastname  Faker::Name.last_name
     email     Faker::Internet.email
     password  "password"
+
+    factory :admin do
+      admin true
+    end
   end
 end
