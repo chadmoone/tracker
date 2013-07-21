@@ -1,4 +1,7 @@
 Tracker::Application.routes.draw do
+  get "users/new"
+  get "users/create"
+  get "users/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,7 +11,8 @@ Tracker::Application.routes.draw do
     resources :issues
   end
 
-
+  resources :users
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

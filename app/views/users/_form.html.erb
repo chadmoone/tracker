@@ -1,0 +1,53 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, 'error') %> prohibited your account from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+
+    <div class="control-group<%= @user.errors.has_key?(:name) ? ' error' : ''  %>">
+      <div class="controls">
+        <%= f.label :name, nil, class: "control-label" %>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    
+    <div class="control-group<%= @user.errors.has_key?(:email) ? ' error' : ''  %>">
+      <div class="controls">
+        <%= f.label :email, nil, class: "control-label" %>
+        <%= f.email_field :email %>
+      </div>
+    </div>
+
+    <div class="control-group<%= @user.errors.has_key?(:password) ? ' error' : ''  %>">
+      <div class="controls">
+        <%= f.label :password, nil, class: "control-label" %>
+        <%= f.password_field :password %>
+      </div>
+    </div>
+
+    <div class="control-group<%= @user.errors.has_key?(:password_confirmation) ? ' error' : ''  %>">
+      <div class="controls">
+        <%= f.label :password_confirmation, nil, class: "control-label" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </div>
+  
+  <fieldset>
+
+  <% if @user.new_record? %>
+    <%= link_to 'Cancel', root_path, class: 'btn' %>
+  <% else %>
+    <%= link_to 'Cancel', @user, class: 'btn' %>
+  <% end %>
+  
+  <%= f.submit "Sign up", class: 'btn btn-primary' %>
+
+<% end %>
