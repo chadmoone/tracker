@@ -1,17 +1,17 @@
 Tracker::Application.routes.draw do
-  get "users/new"
-  get "users/create"
-  get "users/show"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   root 'projects#index'
 
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+
   resources :projects do
     resources :issues
   end
 
-  resources :users
+
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
