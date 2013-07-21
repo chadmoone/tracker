@@ -44,10 +44,12 @@
 
   <% if @user.new_record? %>
     <%= link_to 'Cancel', root_path, class: 'btn' %>
+    <%= f.submit "Sign up", class: 'btn btn-primary' %>
   <% else %>
     <%= link_to 'Cancel', @user, class: 'btn' %>
+    <%= f.submit "Update Profile", class: 'btn btn-primary' %>
   <% end %>
   
-  <%= f.submit "Sign up", class: 'btn btn-primary' %>
+  
 
 <% end %>
