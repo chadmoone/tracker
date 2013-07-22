@@ -7,6 +7,7 @@ Tracker::Application.routes.draw do
   root 'projects#index'
 
   namespace :admin do
+    root to: 'base#index'
     resources :users
   end
 
