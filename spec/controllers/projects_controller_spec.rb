@@ -14,7 +14,7 @@ describe ProjectsController do
   edit: :get,
   update: :put,
   destroy: :delete}.each do |action, method|
-    it "cannot access the new action" do
+    it "cannot access the #{action} action" do
       sign_in user
       send(method, action, id: FactoryGirl.create(:project))
       expect(response).to redirect_to(root_path)

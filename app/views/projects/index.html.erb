@@ -6,6 +6,8 @@
   <% end %>
 </ul>
 
-<%= link_to new_project_path, class: 'btn' do %>
-<i class="icon-plus"></i> New Project
+<% admins_only do %>
+  <%= link_to new_project_path, class: 'btn' do %>
+  <i class="icon-plus"></i> New Project
+  <% end %>
 <% end %>
