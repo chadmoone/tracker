@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  private
+  protected
 
     def authorize_admin!
       authenticate_user!
@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
       unless current_user.admin?
         flash[:alert] = "You must be an admin to do that."
         redirect_to root_path
+      end
+    end
+
+    def devise_parameter_sanitizer
+      if resource_class == User
+        User::ParameterSanitizer.new(User, :user, params)
+      else
+        super # Use the default one
       end
     end
 end

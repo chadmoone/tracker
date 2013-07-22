@@ -22,7 +22,11 @@ class Admin::UsersController < Admin::BaseController
 
   private
     def user_params
-      puts params.inspect
-      params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
+      params.require(:user).permit(:firstname,
+                                   :lastname,
+                                   :email,
+                                   :password,
+                                   :password_confirmation,
+                                   :admin)
     end
 end
