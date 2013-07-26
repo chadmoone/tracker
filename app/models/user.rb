@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :issues
+  validates :email, presence: true
 
   def name 
     "#{firstname} #{lastname}"
