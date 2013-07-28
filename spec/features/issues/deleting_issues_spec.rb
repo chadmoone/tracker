@@ -6,6 +6,7 @@ feature "Deleting Issues" do
   let!(:issue) { FactoryGirl.create(:issue, project: project, user: user) }
 
   before do
+    define_permission!(user, "view", project)
     sign_in_as! user
     visit '/'
     click_link project.name

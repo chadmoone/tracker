@@ -17,6 +17,9 @@ feature "Viewing Issues" do
                        description: "Isn't a joke.",
                        user: user)
 
+    define_permission!(user, "view", textmate_2)
+    define_permission!(user, "view", internet_explorer)
+    sign_in_as!(user)
     visit '/'
   end
 

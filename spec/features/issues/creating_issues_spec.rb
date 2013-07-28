@@ -4,17 +4,12 @@ feature 'Creating Issues' do
   before do
     project = FactoryGirl.create(:project)
     @user = FactoryGirl.create(:user)
+    define_permission!(@user, "view", project)
+    sign_in_as!(@user)
 
     visit '/'
     click_link project.name
     click_link "New Issue"
-
-    message = "You need to log in or sign up before continuing."
-    expect(page).to have_content(message)
-
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: @user.password
-    click_button "Log in"
 
     within("h2") do
       expect(page).to have_content("New Issue")
