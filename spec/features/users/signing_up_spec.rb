@@ -3,8 +3,11 @@ require 'spec_helper'
 feature 'Signing Up' do
   scenario 'Successful sign up' do
     visit '/'
+    
+    within("header") do
+      click_link 'Sign up'  
+    end
 
-    click_link 'Sign up'
     fill_in 'Email', with: 'user@example.com'
     fill_in 'user[password]', with: 'password'
     fill_in 'Password confirmation', with: 'password'
