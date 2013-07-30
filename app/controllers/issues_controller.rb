@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
   before_action :set_project
   before_action :set_issue, only: [:show,
@@ -56,7 +56,10 @@ class IssuesController < ApplicationController
     end
 
     def set_project
-      @project = Project.find([params[:project_id]]).first
+      @project = Project.for(current_user).find([params[:project_id]]).first
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The project you were looking for could not be found."
+      redirect_to root_path
     end
 
     def set_issue
