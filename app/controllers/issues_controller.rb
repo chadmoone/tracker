@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
   before_action :authorize_create!, only: [:new, :create]
   before_action :authorize_update!, only: [:edit, :update]
+  before_action :authorize_delete!, only: :destroy
 
   def index
     @issues = @project.issues.all
@@ -75,6 +76,13 @@ class IssuesController < ApplicationController
     def authorize_update!
       if !current_user.admin? && cannot?("edit issues".to_sym, @project)
         flash[:alert] = "You cannot edit issues on this project."
+        redirect_to @project
+      end
+    end
+
+    def authorize_delete!
+      if !current_user.admin? && cannot?("delete issues".to_sym, @project)
+        flash[:alert] = "You cannot delete issues from this project."
         redirect_to @project
       end
     end

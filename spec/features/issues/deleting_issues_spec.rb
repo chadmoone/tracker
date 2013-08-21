@@ -7,6 +7,7 @@ feature "Deleting Issues" do
 
   before do
     define_permission!(user, "view", project)
+    define_permission!(user, "delete issues", project)
     sign_in_as! user
     visit '/'
     click_link project.name

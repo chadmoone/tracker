@@ -21,15 +21,15 @@ describe IssuesController do
       end
 
       def cannot_create_issues!
-        response.should redirect_to(project)
+        expect(response).to redirect_to(project)
         message = "You cannot create issues on this project."
-        flash[:alert].should eql(message)
+        expect(flash[:alert]).to eql(message)
       end
 
       def cannot_update_issues!
-        response.should redirect_to(project)
+        expect(response).to redirect_to(project)
         message = "You cannot edit issues on this project."
-        flash[:alert].should eql(message)
+        expect(flash[:alert]).to eql(message)
       end
 
       it "cannot begin to create an issue" do
@@ -53,6 +53,14 @@ describe IssuesController do
                        issue: {}
                      }
         cannot_update_issues!
+      end
+
+      it "cannot delete an issue without permission" do
+        delete :destroy, { project_id: project.id, id: issue.id }
+
+        expect(response).to redirect_to(project)
+        message = "You cannot delete issues from this project."
+        expect(flash[:alert]).to eql(message)
       end
     end
   end
