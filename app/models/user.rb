@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :issues
   validates :email, presence: true
+  has_many :issues
+  has_many :permissions
 
   def name 
     "#{firstname} #{lastname}"

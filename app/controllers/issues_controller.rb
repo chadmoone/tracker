@@ -2,10 +2,8 @@ class IssuesController < ApplicationController
   before_action :authenticate_user!
 
   before_action :set_project
-  before_action :set_issue, only: [:show,
-                                   :edit,
-                                   :update,
-                                   :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_create!, only: [:new, :create]
 
   def index
     @issues = @project.issues.all
@@ -64,5 +62,12 @@ class IssuesController < ApplicationController
 
     def set_issue
       @issue = @project.issues.find(params[:id])
+    end
+
+    def authorize_create!
+      if !current_user.admin? && cannot?("create issues".to_sym, @project)
+        flash[:alert] = "You cannot create issues on this project."
+        redirect_to @project
+      end
     end
 end
