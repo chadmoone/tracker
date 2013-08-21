@@ -26,6 +26,12 @@ describe IssuesController do
         flash[:alert].should eql(message)
       end
 
+      def cannot_update_issues!
+        response.should redirect_to(project)
+        message = "You cannot edit issues on this project."
+        flash[:alert].should eql(message)
+      end
+
       it "cannot begin to create an issue" do
         get :new, project_id: project.id
         cannot_create_issues!
@@ -34,6 +40,19 @@ describe IssuesController do
       it "cannot create an issue without permission" do
         post :create, project_id: project.id
         cannot_create_issues!
+      end
+
+      it "cannot edit an issue without permission" do
+        get :edit, { project_id: project.id, id: issue.id}
+        cannot_update_issues!
+      end
+
+      it "cannot update an issue without permission" do
+        put :update, { project_id: project.id,
+                       id: issue.id,
+                       issue: {}
+                     }
+        cannot_update_issues!
       end
     end
   end
