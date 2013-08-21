@@ -8,7 +8,11 @@ Tracker::Application.routes.draw do
 
   namespace :admin do
     root to: 'base#index'
-    resources :users
+    resources :users do
+      resources :permissions
+
+      put "permissions", to: "permissions#set", as: "set_permissions"
+    end
   end
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout' }
