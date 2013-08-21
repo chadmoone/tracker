@@ -18,8 +18,7 @@ feature 'Creating Projects' do
 
     expect(page.current_url).to eql(project_url(project))
 
-    title = "TextMate 2 - Projects - Tracker"
-    expect(find("title").native.text).to have_content(title)
+    page.should have_title("TextMate 2 - Projects - Tracker")
   end
 
   scenario "can not create a project without a name" do
