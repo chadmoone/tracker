@@ -4,9 +4,11 @@
 
 
   <div class="text-right">
-    <%= link_to new_project_issue_path(@project), class: "btn btn-success" do %>
-      <i class="icon-plus icon-white"></i>
-      New Issue
+    <% authorized?(:"create issues", @project) do %>
+      <%= link_to new_project_issue_path(@project), class: "btn btn-success" do %>
+        <i class="icon-plus icon-white"></i>
+        New Issue
+      <% end %>
     <% end %>
   </div>
 

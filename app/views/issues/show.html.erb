@@ -3,14 +3,19 @@
 
   <span id="creator">Created by <%= @issue.user.name %></span>
 
-  <%= link_to [:edit, @project, @issue], class: "btn" do %>
-    <i class="icon-pencil"></i>
-    Edit Issue
+  
+  <% authorized?("edit issues", @project) do %>
+    <%= link_to [:edit, @project, @issue], class: "btn" do %>
+      <i class="icon-pencil"></i>
+      Edit Issue
+    <% end %>
   <% end %>
 
-  <%= link_to [@project, @issue], method: :delete, class: "btn", data: {confirm: "Are you sure you want to delete this issue?"} do %>
-    <i class="icon-trash"></i>
-    Delete Issue
+  <% authorized?("delete issues", @project) do %>
+    <%= link_to [@project, @issue], method: :delete, class: "btn", data: {confirm: "Are you sure you want to delete this issue?"} do %>
+      <i class="icon-trash"></i>
+      Delete Issue
+    <% end %>
   <% end %>
 
   <%= simple_format(@issue.description) %>
