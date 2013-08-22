@@ -39,6 +39,7 @@ end
 gem 'devise'
 gem 'cancan'
 
+gem 'fog'
 gem 'carrierwave'
 
 # Use unicorn as the app server
