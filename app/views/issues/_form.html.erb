@@ -1,4 +1,4 @@
-<%= form_for [@project, @issue] do |f| %>
+<%= form_for [@project, @issue], html: { multipart: true} do |f| %>
   <% if @issue.errors.any? %>
     <div id="error_explanation">
       <h4><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h4>
@@ -23,6 +23,13 @@
       <div class="controls">
         <%= f.label :description, nil, class: "control-label" %>
         <%= f.text_field :description %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.label :asset, "File", class: "control-label" %>
+        <%= f.file_field :asset %>
       </div>
     </div>
   

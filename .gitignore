@@ -19,3 +19,4 @@ bin/
 /tmp
 
 app/views/.DS_Store
+public/uploads

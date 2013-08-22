@@ -52,7 +52,7 @@ class IssuesController < ApplicationController
 
   private
     def issue_params
-      params.require(:issue).permit(:title, :description)
+      params.require(:issue).permit(:title, :description, :asset)
     end
 
     def set_project
