@@ -1,32 +1,41 @@
-<div id="issue">
-  <h2><%= @issue.title %></h2>
 
-  <span id="creator">Created by <%= @issue.user.name %></span>
+<div id="issue" class="panel panel-default">
+  <div class="panel-heading">
+    
+    <div class="pull-right">
+      <% authorized?("edit issues", @project) do %>
+        <%= link_to [:edit, @project, @issue], class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+          Edit Issue
+        <% end %>
+      <% end %>
+      <% authorized?("delete issues", @project) do %>
+        <%= link_to [@project, @issue], method: :delete, class: "btn btn-sm btn-danger", data: {confirm: "Are you sure you want to delete this issue?"} do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          Delete Issue
+        <% end %>
+      <% end %>
+    </div>
+    <h3 class=""><%= @issue.title %> </h3>
+    <span class="muted creator"><small><%= @issue.user.name %> created this issue <%= time_ago_in_words(@issue.created_at) %> ago</small></span>
+    
+  </div>
 
-  
-  <% authorized?("edit issues", @project) do %>
-    <%= link_to [:edit, @project, @issue], class: "btn" do %>
-      <i class="icon-pencil"></i>
-      Edit Issue
-    <% end %>
-  <% end %>
-
-  <% authorized?("delete issues", @project) do %>
-    <%= link_to [@project, @issue], method: :delete, class: "btn", data: {confirm: "Are you sure you want to delete this issue?"} do %>
-      <i class="icon-trash"></i>
-      Delete Issue
-    <% end %>
-  <% end %>
-
-  <%= simple_format(@issue.description) %>
+  <div class="panel-body">
+    <%= simple_format(@issue.description) %>
+  </div>
+   
 
   <% if @issue.asset.present? %>
-    <h3>Attached File</h3>
-    <div class="asset">
-      <p>
-        <%= link_to File.basename(@issue.asset.path), @issue.asset.url %>
-      </p>
-      <p><small><%= number_to_human_size(@issue.asset.size) %></small></p>
+    <div class="panel-footer">
+      <div class="asset">
+        <%= link_to @issue.asset.url, class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-paperclip"></span>
+          <%= File.basename(@issue.asset.path) %> <small> <%= number_to_human_size(@issue.asset.size) %></small>
+        <% end %>
+      </div>
     </div>
+    
   <% end %>
 </div>
+

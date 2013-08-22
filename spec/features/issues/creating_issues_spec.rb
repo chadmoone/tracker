@@ -24,8 +24,8 @@ feature 'Creating Issues' do
 
     expect(page).to have_content("Issue successfully created.")
 
-    within "#issue #creator" do
-      expect(page).to have_content("Created by #{@user.name}")
+    within "#issue .creator" do
+      expect(page).to have_content("#{@user.name}")
     end
   end
 
@@ -48,13 +48,19 @@ feature 'Creating Issues' do
   scenario "Creating an issue with an attachment" do
     fill_in "Title", with: "Add documentation for blink tag"
     fill_in "Description", with: "The blink tag has a speed attribute"
-    attach_file "File", "spec/fixtures/speed.txt"
+
+    attach_file "File #1", "spec/fixtures/speed.txt"
+    attach_file "File #2", "spec/fixtures/tony.jpg"
+    attach_file "File #3", "spec/fixtures/gettysburg.docx"
+
     click_button "Create Issue"
 
     expect(page).to have_content("Issue successfully created.")
 
     within "#issue .asset" do
       expect(page).to have_content("speed.txt")
+      expect(page).to have_content("tony.jpg")
+      expect(page).to have_content("gettysburg.docx")
     end
   end
 end

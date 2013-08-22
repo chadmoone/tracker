@@ -8,7 +8,9 @@ gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
-gem 'bootstrap-sass'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails',
+                              :branch => '3.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'

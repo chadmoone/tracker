@@ -10,30 +10,20 @@
     </div>
   <% end %>
 
-  <fieldset>
-
-    <div class="control-group<%= @issue.errors.has_key?(:title) ? ' error' : ''  %>">
-      <div class="controls">
-        <%= f.label :title, nil, class: "control-label" %>
-        <%= f.text_field :title %>
-      </div>
-    </div>
-    
-    <div class="control-group<%= @issue.errors.has_key?(:description) ? ' error' : ''  %>">
-      <div class="controls">
-        <%= f.label :description, nil, class: "control-label" %>
-        <%= f.text_field :description %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="controls">
-        <%= f.label :asset, "File", class: "control-label" %>
-        <%= f.file_field :asset %>
-      </div>
-    </div>
+  <div class="form-group<%= @issue.errors.has_key?(:title) ? ' error' : ''  %>">
+    <%= f.label :title, nil, class: "control-label" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
   
-  <fieldset>
+  <div class="form-group<%= @issue.errors.has_key?(:description) ? ' error' : ''  %>">
+    <%= f.label :description, nil, class: "control-label" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :asset, "File", class: "control-label" %>
+    <%= f.file_field :asset, class: "form-control" %>
+  </div>
 
   <% if @issue.new_record? %>
     <%= link_to 'Cancel', @project, class: 'btn' %>

@@ -29,7 +29,7 @@ feature "Viewing Issues" do
     expect(page).to_not have_content("Standards compliance")
 
     click_link "Make it shiny!"
-    within("#issue h2") do
+    within("#issue h3") do
       expect(page).to have_content("Make it shiny!")
     end
 

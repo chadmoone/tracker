@@ -21,7 +21,7 @@ feature "Editing Issues" do
 
     expect(page).to have_content("Issue successfully updated.")
 
-    within("#issue h2") do
+    within("#issue h3") do
       expect(page).to have_content("Make it really shiny!")
     end
 
