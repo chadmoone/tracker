@@ -35,7 +35,7 @@
 
   <% if @issue.attachments.any? %>
     <div class="panel-footer attachments">
-      <%= @issue.attachments.each do |attachment| %>
+      <% @issue.attachments.each do |attachment| %>
           <%= link_to attachment.asset.url, class: "btn btn-default btn-sm" do %>
             <span class="glyphicon glyphicon-paperclip"></span>
             <%= File.basename(attachment.asset.path) %>
