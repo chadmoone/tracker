@@ -57,7 +57,7 @@ feature 'Creating Issues' do
 
     expect(page).to have_content("Issue successfully created.")
 
-    within "#issue .asset" do
+    within "#issue .attachments" do
       expect(page).to have_content("speed.txt")
       expect(page).to have_content("tony.jpg")
       expect(page).to have_content("gettysburg.docx")

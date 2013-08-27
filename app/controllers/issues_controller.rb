@@ -16,6 +16,7 @@ class IssuesController < ApplicationController
 
   def new
     @issue = @project.issues.build
+    3.times { @issue.attachments.build }
   end
 
   def create
@@ -52,7 +53,7 @@ class IssuesController < ApplicationController
 
   private
     def issue_params
-      params.require(:issue).permit(:title, :description, :asset)
+      params.require(:issue).permit(:title, :description, attachments_attributes: [:asset])
     end
 
     def set_project
