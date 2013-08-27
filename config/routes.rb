@@ -21,7 +21,6 @@ Tracker::Application.routes.draw do
     resources :issues
   end
 
-
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

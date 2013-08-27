@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827181420) do
+ActiveRecord::Schema.define(version: 20130827221916) do
 
   create_table "attachments", force: true do |t|
     t.string   "asset"
     t.integer  "issue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "content_type"
   end
 
   create_table "issues", force: true do |t|
