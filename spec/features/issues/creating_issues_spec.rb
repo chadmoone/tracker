@@ -49,13 +49,13 @@ feature 'Creating Issues' do
     fill_in "Title", with: "Add documentation for blink tag"
     fill_in "Description", with: "The blink tag has a speed attribute"
 
-    attach_file "File #1", "spec/fixtures/speed.txt"
+    attach_file "File #1", Rails.root.join("spec/fixtures/speed.txt")
 
     click_link "Add another file"
-    attach_file "File #2", "spec/fixtures/tony.jpg"
+    attach_file "File #2", Rails.root.join("spec/fixtures/tony.jpg")
 
     click_link "Add another file"
-    attach_file "File #3", "spec/fixtures/gettysburg.docx"
+    attach_file "File #3", Rails.root.join("spec/fixtures/gettysburg.docx")
 
     click_button "Create Issue"
 
