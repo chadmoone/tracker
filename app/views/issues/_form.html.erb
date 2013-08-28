@@ -21,12 +21,14 @@
   </div>
 
   <% number = 0 %>
-  <%= f.fields_for :attachments do |attachment| %>
-    <div class="form-group">
-      <%= attachment.label :asset, "File ##{number += 1}", class: "control-label" %>
-      <%= attachment.file_field :asset, class: "form-control" %>
-    </div>
-  <% end %>
+  <div id="attachments">
+    <%= render partial: 'attachments/form', locals: {number: number} %>
+  </div>
+  
+
+  <%= link_to "Add another file",
+              'javascript:',
+              id: "add_another_file" %>
 
   <% if @issue.new_record? %>
     <%= link_to 'Cancel', @project, class: 'btn' %>

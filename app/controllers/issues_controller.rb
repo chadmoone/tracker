@@ -16,7 +16,7 @@ class IssuesController < ApplicationController
 
   def new
     @issue = @project.issues.build
-    3.times { @issue.attachments.build }
+    @issue.attachments.build
   end
 
   def create

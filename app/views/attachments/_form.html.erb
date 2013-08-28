@@ -1,0 +1,8 @@
+<%= fields_for @issue do |f| %>
+  <%= f.fields_for :attachments, child_index: number do |attachment| %>
+    <div class="form-group">
+      <%= attachment.label :asset, "File ##{number += 1}", class: "control-label" %>
+      <%= attachment.file_field :asset, class: "form-control" %>
+    </div>
+  <% end %>
+<% end %>
