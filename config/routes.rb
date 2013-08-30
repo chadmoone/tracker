@@ -22,6 +22,10 @@ Tracker::Application.routes.draw do
     resources :issues
   end
 
+  resources :issues do
+    resources :comments
+  end
+
   resources :attachments
 
   

@@ -23,8 +23,9 @@
         <% end %>
       <% end %>
     </div>
+    <span class="muted creator"><img src="http://gravatar.com/avatar/<%= Digest::MD5.hexdigest(@issue.user.email.downcase) %>.png?s=32" alt="..." wdith="32px" height="32px" class="img-rounded"><small> <%= @issue.user.name %> created this issue <%= time_ago_in_words(@issue.created_at) %> ago</small></span>
     <h3 class=""><%= @issue.title %> </h3>
-    <span class="muted creator"><small><%= @issue.user.name %> created this issue <%= time_ago_in_words(@issue.created_at) %> ago</small></span>
+    
     
   </div>
 
@@ -46,3 +47,10 @@
   <% end %>
 </div>
 
+<div id="comments">
+  <% if @issue.comments.any? %>
+    <%= render @issue.comments.select(&:persisted?) %>
+  <% end %>
+</div>
+
+<%= render "comments/form" %>

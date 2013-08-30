@@ -12,6 +12,7 @@ class IssuesController < ApplicationController
   end
 
   def show
+    @comment = @issue.comments.build
   end
 
   def new
