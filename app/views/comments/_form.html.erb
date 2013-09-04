@@ -1,4 +1,5 @@
 <%= form_for [@issue, @comment] do |f| %>
+
   <div class="panel panel-default">
     <div class="panel-body">
       <% if @comment.errors.any? %>
@@ -19,6 +20,10 @@
           <%= f.label :body, "Comment", class: "sr-only control-label" %>
           <%= f.text_area :body, class: "form-control", placeholder: "Add a comment..." %>
       </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :state_id, "State", class: "sr-only control-label" %>
+      <%= f.select :state_id, @states.map { |s| [s.name, s.id] }, selected: @issue.state_id, class: "form-control" %>
     </div>
   </div>
 

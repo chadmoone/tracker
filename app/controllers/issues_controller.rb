@@ -13,6 +13,8 @@ class IssuesController < ApplicationController
 
   def show
     @comment = @issue.comments.build
+    @states = State.all
+    # puts "States: #{@states.map { |s| [s.name, s.id] }}"
   end
 
   def new

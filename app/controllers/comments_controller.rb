@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
       redirect_to [@issue.project, @issue]
     else
       flash[:alert] = "Comment could not be created."
+      @states = State.all
       render template: "issues/show"
     end
   end
@@ -22,6 +23,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:body)
+      params.require(:comment).permit(:body, :state_id)
     end
 end

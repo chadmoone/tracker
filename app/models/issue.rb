@@ -10,6 +10,8 @@ class Issue < ActiveRecord::Base
   
   has_many :comments
 
+  belongs_to :state
+
   validates :title, presence: true
   validates :description, presence: true,
                           length: { minimum: 10 }

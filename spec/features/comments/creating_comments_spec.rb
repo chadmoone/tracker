@@ -7,14 +7,15 @@ feature "Creating comments" do
 
   before do
     define_permission!(user, "view", project)
+    FactoryGirl.create(:state, name: "Open")
 
     sign_in_as!(user)
     visit '/'
     click_link project.name
+    click_link issue.title
   end
 
   scenario "Creating a comment" do
-    click_link issue.title
     fill_in "Comment", with: "Added a comment!"
     click_button "Add Comment"
     expect(page).to have_content("Comment added.")
@@ -24,9 +25,18 @@ feature "Creating comments" do
   end
 
   scenario "Creating an invalid comment" do
-    click_link issue.title
     click_button "Add Comment"
     expect(page).to have_content("Comment could not be created.")
-    expect(page).to have_content("Body can't be blank.")
+    expect(page).to have_content("Body can't be blank")
+  end
+
+  scenario "Changing an issue's status" do
+    fill_in "Comment", with: "This is a real issue!"
+    select "Open", from: "State"
+    click_button "Add Comment"
+    expect(page).to have_content("Comment added.")
+    within("#issue .state") do
+      expect(page).to have_content("Open")
+    end
   end
 end

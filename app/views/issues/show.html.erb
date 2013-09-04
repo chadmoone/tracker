@@ -24,6 +24,9 @@
       <% end %>
     </div>
     <span class="muted creator"><img src="http://gravatar.com/avatar/<%= Digest::MD5.hexdigest(@issue.user.email.downcase) %>.png?s=32" alt="..." wdith="32px" height="32px" class="img-rounded"><small> <%= @issue.user.name %> created this issue <%= time_ago_in_words(@issue.created_at) %> ago</small></span>
+
+    <%= render @issue.state if @issue.state %>
+    
     <h3 class=""><%= @issue.title %> </h3>
     
     
@@ -52,5 +55,8 @@
     <%= render @issue.comments.select(&:persisted?) %>
   <% end %>
 </div>
+
+
+
 
 <%= render "comments/form" %>
