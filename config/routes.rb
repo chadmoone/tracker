@@ -14,7 +14,11 @@ Tracker::Application.routes.draw do
 
       put "permissions", to: "permissions#set", as: "set_permissions"
     end
-    resources :states
+    resources :states do
+      member do
+        get :make_default
+      end
+    end
   end
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout' }

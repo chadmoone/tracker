@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130909211508) do
+ActiveRecord::Schema.define(version: 20130909230653) do
 
   create_table "attachments", force: true do |t|
     t.string   "asset"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20130909211508) do
     t.string   "background"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "default",    default: false
   end
 
   create_table "users", force: true do |t|

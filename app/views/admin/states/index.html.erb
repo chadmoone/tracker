@@ -2,6 +2,8 @@
 
 <ul id="states">
   <% for state in @states %>
-    <li><%= state %></li>
+    <li id="state_<%= state.id %>">
+      <%= state %> <%= link_to "Make Default", make_default_admin_state_path(state) %>
+    </li>
   <% end %>
 </ul>
