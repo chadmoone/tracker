@@ -70,4 +70,22 @@ feature "Assigning permissions" do
 
     expect(page).to have_content("Issue has been destroyed.")
   end
+
+  scenario "Changing states for an issue" do
+    FactoryGirl.create(:state, name: "Open")
+    check_permission_box "view", project
+    check_permission_box "change_states", project
+    click_button "Update"
+    click_link "Log out"
+    sign_in_as!(user)
+    click_link project.name
+    click_link issue.title
+    fill_in "Comment", :with => "Opening this issue."
+    select "Open", :from => "State"
+    click_button "Add Comment"
+    page.should have_content("Comment added.")
+    within("#issue .state") do
+      page.should have_content("Open")
+    end
+  end
 end

@@ -21,10 +21,13 @@
           <%= f.text_area :body, class: "form-control", placeholder: "Add a comment..." %>
       </div>
     </div>
-    <div class="form-group">
-      <%= f.label :state_id, "State", class: "sr-only control-label" %>
-      <%= f.select :state_id, @states.map { |s| [s.name, s.id] }, selected: @issue.state_id, class: "form-control" %>
-    </div>
+
+    <% authorized?("change states", @project) do %>
+      <div class="form-group">
+        <%= f.label :state_id, "State", class: "sr-only control-label" %>
+        <%= f.select :state_id, @states.map { |s| [s.name, s.id] }, selected: @issue.state_id, class: "form-control" %>
+      </div>
+    <% end %>
   </div>
 
   <%= f.submit "Add Comment", class: "btn btn-primary pull-right" %>
