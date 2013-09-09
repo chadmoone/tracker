@@ -1,6 +1,10 @@
 <%= div_for comment, class: "panel panel-default" do %>
   <div class="panel-heading">
     <img src="http://gravatar.com/avatar/<%= Digest::MD5.hexdigest(comment.user.email.downcase) %>.png?s=32" alt="..." wdith="32px" height="32px" class="img-rounded"><small> <%= comment.user.name %> commmented <%= time_ago_in_words(comment.created_at) %> ago</small>
+
+    
+    <span class="pull-right">State: <%= raw state_for(comment) %></span>
+    
   </div>
 
   <div class="panel-body">
