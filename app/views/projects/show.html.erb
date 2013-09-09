@@ -15,7 +15,8 @@
   <% @project.issues.each do |issue| %>
     <%= link_to [@project, issue], class: "list-group-item" do %>
       <span class="pull-right muted-text">#<%= issue.id %></span>
-      <h4 class="list-group-item-heading"><%= issue.title %></h4>
+      <h4 class="list-group-item-heading"><%= issue.title %> <%= render issue.state if issue.state %></h4>
+      
       <span class="pull-right text-muted"><small><span class="glyphicon glyphicon-time"></span> last updated <%= time_ago_in_words(issue.updated_at) %> ago</small></span>
       <p class="list-group-item-text text-muted"><small>Opened by <%= issue.user.name %></small></p>
     <% end %>
