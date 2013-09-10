@@ -1,1 +1,9 @@
-<%= project_issue_url(@issue.project, @issue) %>
+Hi, <%= @user.firstname %>!
+
+<%= @issue.title %> for <%= @project.name %> has been updated.
+
+<%= @comment.user.email %> wrote:
+
+<%= @comment.body %>
+
+You can view this issue online by going to: <%= project_issue_url(@project, @issue) %>

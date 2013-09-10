@@ -30,5 +30,22 @@ feature "Issue Notifications" do
     end
   end
 
-
+  scenario "Comment authors are automatically subscribed to an issue" do
+    click_link project.name
+    click_link issue.title
+    fill_in "Comment", :with => "Is it out yet?"
+    click_button "Add Comment"
+    page.should have_content("Comment added.")
+    find_email!(alice.email)
+    click_link "Log out"
+    reset_mailer
+    sign_in_as!(alice)
+    click_link project.name
+    click_link issue.title
+    fill_in "Comment", :with => "Not yet!"
+    click_button "Add Comment"
+    page.should have_content("Comment added.")
+    find_email!(bob.email)
+    lambda { find_email!(alice.email) }.should raise_error
+  end
 end

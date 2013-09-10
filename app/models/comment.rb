@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   before_create :set_previous_state
   after_create :set_issue_state
+  after_create :creator_watches_issue
 
   belongs_to :user
   belongs_to :issue
@@ -19,5 +20,9 @@ class Comment < ActiveRecord::Base
     def set_issue_state
       self.issue.state = self.state
       self.issue.save!
+    end
+
+    def creator_watches_issue
+      issue.watchers << user unless issue.watchers.include?(user)
     end
 end

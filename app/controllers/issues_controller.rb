@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   before_action :authenticate_user!
 
   before_action :set_project
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :watch]
   before_action :authorize_create!, only: [:new, :create]
   before_action :authorize_update!, only: [:edit, :update]
   before_action :authorize_delete!, only: :destroy
@@ -52,6 +52,17 @@ class IssuesController < ApplicationController
     @issue.destroy
     flash[:notice] = "Issue has been destroyed."
     redirect_to @project
+  end
+
+  def watch
+    if @issue.watchers.exists?(current_user)
+      @issue.watchers -= [current_user]
+      flash[:notice] = "You are no longer watching this issue."
+    else
+      @issue.watchers << current_user
+      flash[:notice] = "You are now watching this issue."
+    end
+    redirect_to project_issue_path(@issue.project, @issue)
   end
 
   private
