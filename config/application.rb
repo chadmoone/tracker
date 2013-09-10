@@ -22,5 +22,7 @@ module Tracker
 
     # This is required by bootstrap-sass
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.active_record.observers = :comment_observer
   end
 end

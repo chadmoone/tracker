@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
+gem 'rails-observers'
 
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
@@ -69,4 +70,5 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'email_spec'
 end

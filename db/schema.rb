@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130909230653) do
+ActiveRecord::Schema.define(version: 20130910045651) do
 
   create_table "attachments", force: true do |t|
     t.string   "asset"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20130909230653) do
     t.datetime "updated_at"
     t.integer  "state_id"
     t.integer  "previous_state_id"
+  end
+
+  create_table "issue_watchers", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "issue_id"
   end
 
   create_table "issues", force: true do |t|
