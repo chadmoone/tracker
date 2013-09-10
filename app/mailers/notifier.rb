@@ -1,5 +1,6 @@
 class Notifier < ActionMailer::Base
-  default from: "tracker@example.com"
+  from_address = ActionMailer::Base.smtp_settings[:user_name]
+  default from: "Tracker <#{from_address}>"
 
   def comment_updated(comment, user)
     @comment = comment

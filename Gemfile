@@ -66,6 +66,8 @@ group :test, :development do
   gem 'factory_girl'
 
   gem 'faker'
+
+  gem 'gmail'
 end
 
 group :test do

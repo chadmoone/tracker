@@ -20,3 +20,4 @@ bin/
 
 app/views/.DS_Store
 public/uploads
+config/initializers/mail.rb
