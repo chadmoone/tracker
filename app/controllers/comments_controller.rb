@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
+      params[:comment].delete(:state_id) unless can?(:"change states", @issue.project)
       params.require(:comment).permit(:body, :state_id)
     end
 end
